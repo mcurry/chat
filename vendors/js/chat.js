@@ -20,7 +20,7 @@
       var $this = $(this);
       update($this);
       setInterval(function() { update($this); }, opts.interval);
-      $(this).find("form").bind('submit', function() { post($(this)); return false});
+      $this.find("form").bind('submit', function() { post($this); return false});
     });
   };
 
