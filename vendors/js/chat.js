@@ -20,12 +20,13 @@
       var $this = $(this);
       update($this);
       setInterval(function() { update($this); }, opts.interval);
-      $this.find("form").bind('submit', function() { post($this); return false});
+      $this.find("form").bind('submit', function() { post($(this)); return false});
     });
   };
 
   function update($obj) {
     $.ajax({
+			cache: false,
       url: opts.update + "/" + $obj.attr("name"),
       success: function(ret) {
         $obj.find(".chat_window").html(ret);
@@ -37,7 +38,7 @@
     var $name =  $obj.find("input[name='data[Chat][name]']");
     var $message =  $obj.find("textarea[name='data[Chat][message]']");
     var $submit = $obj.find("input[type='submit']");
-    
+ 
     if( ($.trim($name.val()) == "") || ($.trim($message.val()) == "") ) {
       return;
     }
